@@ -17,7 +17,7 @@ namespace TestSessions.services
 
         public static T Get<T>(HttpContext context)
         {
-            String sessionName = nameof(T);
+            String sessionName = typeof(T).Name;
             String? s = context.Session.GetString(sessionName);
             if (string.IsNullOrWhiteSpace(s))
             {
@@ -28,7 +28,7 @@ namespace TestSessions.services
         }
         public static void Set<T>(T t, HttpContext context)
         {
-            String sessionName = nameof(T);
+            String sessionName = typeof(T).Name;
             String s = JsonSerializer.Serialize(t);
             context.Session.SetString(sessionName, s);
         }
