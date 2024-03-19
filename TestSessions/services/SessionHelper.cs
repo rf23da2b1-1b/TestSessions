@@ -35,7 +35,7 @@ namespace TestSessions.services
 
         public static void Clear<T>(HttpContext context)
         {
-            context.Session.Remove(nameof(T));
+            context.Session.Remove(typeof(T).Name);
         }
     }
 }
